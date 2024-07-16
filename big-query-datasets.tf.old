@@ -1,0 +1,21 @@
+resource "google_bigquery_dataset" "bu-dataset" {
+  dataset_id = "DS_${var.business_unit}"
+  friendly_name = "test"
+  description = "This is a test description"
+  location = "EU"
+  default_table_expiration_ms = 3600000
+
+  labels = {
+    env = var.environment
+  }
+
+  access {
+    role = "OWNER"
+    user_by_email = google_service_account.service_account.email
+  }
+
+
+}
+
+
+
